@@ -1,0 +1,16 @@
+<div class="item">
+  <input type="checkbox" (change)="showChoices($event)" /> {{ item.name }}<br />
+  <div *ngIf="checked" class="choices">
+    <label *ngFor="let choice of item.choices">
+      <input type="checkbox" class="choice" (change)="showRelated($event)" />
+      {{ choice.name }}
+    </label>
+    <div *ngIf="related">
+      <p *ngIf="item.related && item.related.length > 0">You might also want</p>
+      <app-menu-item
+        *ngFor="let menuItem of item.related"
+        [item]="menuItem"
+      ></app-menu-item>
+    </div>
+  </div>
+</div>
